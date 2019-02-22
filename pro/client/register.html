@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#sign{
+				margin-right: 100px;
+			}
+			.opera{
+				margin-top:20px ;
+			}
+			#sign{
+				width: 210px;
+				background-color:royalblue;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<span class="name1">姓名:</span><input type="text" id="name"/></br>
+			<span class="password1">密码:</span><input type="text" id="password" /></br>
+			<div class="opera"><button id="sign" onclick="register()">注册</button></div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		function register(){
+			$.ajax({
+				url:"http://localhost:8888/register",
+				type:"post",
+				data:{
+					username:$("#name").val(),
+					password:$("#password").val()
+				},
+				success(res){
+					alert(res.dec)
+				}
+			})
+		}
+	</script>
+</html>

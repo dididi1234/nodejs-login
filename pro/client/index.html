@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#sign{
+				margin-right: 100px;
+			}
+			.opera{
+				margin-top:20px ;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<span class="name1">姓名:</span><input type="text" id="name"/></br>
+			<span class="password1">密码:</span><input type="text" id="password" /></br>
+			<div class="opera"><button id="sign">登录</button><button id="reg" onclick="register()">注册</button></div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('#sign').click(function(){
+			console.log($("#name").val())
+	      $.ajax({
+	      	type:"post",
+	      	url:"http://localhost:8888/login",
+	      	data:{
+	      		name:$("#name").val(),
+	      		password:$('#password').val()
+	      	},
+	      	async:true,
+	      	success(res){
+	      		if(res.state==200){
+	      			window.location.replace("success.html")
+	      		}else if(res.state==400){
+	      			alert("用户名或密码错误")
+	      		}else if(res.state==1000){
+	      			alert("用户名不存在")
+	      		}else{
+	      			alert("系统异常")
+	      		}
+	      	},
+	      	error:function(){
+	      		alert("请求失败")
+	      	}
+	      });
+		})
+		function register(){
+			window.location.replace("register.html")
+		}
+	</script>
+</html>
